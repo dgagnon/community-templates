@@ -34,7 +34,7 @@ echo 'root:<%= root_pass -%>' | /usr/sbin/chpasswd -e
 <% end -%>
 
 <% if puppet_enabled -%>
-<% if @host.param_true?('enable-puppetlabs-repo') -%>
+<% if @host.params['enable-puppetlabs-repo'] -%>
 <% if @host.operatingsystem.name == 'Fedora' -%>
 rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-fedora-<%= os_major -%>.noarch.rpm
 <% else -%>

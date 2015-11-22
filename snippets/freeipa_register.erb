@@ -68,7 +68,7 @@ freeipa_opts="<%= @host.params['freeipa_opts'] %>"
 automount_location="--location <%= @host.params['freeipa_automount_location'] %>"
 <% end -%>
 
-<% if @host.param_true? 'freeipa_automount' -%>
+<% if @host.params['freeipa_automount'] -%>
 if [ -f /usr/sbin/ipa-client-automount ]
 then
   /usr/sbin/ipa-client-automount $freeipa_server $automount_location --unattended
