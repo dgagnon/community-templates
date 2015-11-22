@@ -60,7 +60,7 @@ realm join --one-time-password=<%= @host.otp || "$HOST[OTP]" %> <%= @host.realm 
 services --disabled gpm,sendmail,cups,pcmcia,isdn,rawdevices,hpoj,bluetooth,openibd,avahi-daemon,avahi-dnsconfd,hidd,hplip,pcscd
 
 repo --name="EPEL" --mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-<%= @host.operatingsystem.major %>&arch=<%= @host.architecture %><%= proxy_string %>
-<% if puppet_enabled && @host.param_true?('enable-puppetlabs-repo') -%>
+<% if puppet_enabled && @host.params['enable-puppetlabs-repo'] -%>
 repo --name=puppetlabs-products --baseurl=http://yum.puppetlabs.com/el/<%= @host.operatingsystem.major %>/products/<%= @host.architecture %><%= proxy_string %>
 repo --name=puppetlabs-deps --baseurl=http://yum.puppetlabs.com/el/<%= @host.operatingsystem.major %>/dependencies/<%= @host.architecture %><%= proxy_string %>
 <% end -%>
@@ -91,7 +91,7 @@ wget
 redhat-lsb-core
 <% end -%>
 epel-release
-<% if puppet_enabled && @host.param_true?('enable-puppetlabs-repo') -%>
+<% if puppet_enabled && @host.params['enable-puppetlabs-repo'] -%>
 puppetlabs-release
 <% end -%>
 <% if salt_enabled %>
